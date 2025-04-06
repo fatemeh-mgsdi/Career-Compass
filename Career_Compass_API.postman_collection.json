@@ -1,0 +1,569 @@
+{
+	"info": {
+		"_postman_id": "your-postman-id",
+		"name": "Career Compass API",
+		"description": "API collection for Career Compass application",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Authentication",
+			"item": [
+				{
+					"name": "Login",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"email\": \"user@example.com\",\n    \"password\": \"your_password\"\n}"
+						},
+						"url": {
+							"raw": "{{base_url}}/api/auth/login/",
+							"host": ["{{base_url}}"],
+							"path": ["api", "auth", "login", ""]
+						}
+					}
+				},
+				{
+					"name": "Refresh Token",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"refresh\": \"{{refresh_token}}\"\n}"
+						},
+						"url": {
+							"raw": "{{base_url}}/api/auth/token/refresh/",
+							"host": ["{{base_url}}"],
+							"path": ["api", "auth", "token", "refresh", ""]
+						}
+					}
+				}
+			]
+		},
+		{
+			"name": "Resumes",
+			"item": [
+				{
+					"name": "List Resumes",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{access_token}}"
+							}
+						],
+						"url": {
+							"raw": "{{base_url}}/api/resumes/",
+							"host": ["{{base_url}}"],
+							"path": ["api", "resumes", ""]
+						}
+					}
+				},
+				{
+					"name": "Upload Resume",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{access_token}}"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "file",
+									"type": "file",
+									"src": "/path/to/your/resume.pdf"
+								},
+								{
+									"key": "title",
+									"value": "My Resume",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{base_url}}/api/resumes/",
+							"host": ["{{base_url}}"],
+							"path": ["api", "resumes", ""]
+						}
+					}
+				},
+				{
+					"name": "Get Resume",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{access_token}}"
+							}
+						],
+						"url": {
+							"raw": "{{base_url}}/api/resumes/{{resume_id}}/",
+							"host": ["{{base_url}}"],
+							"path": ["api", "resumes", "{{resume_id}}", ""]
+						}
+					}
+				},
+				{
+					"name": "Analyze Resume",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{access_token}}"
+							}
+						],
+						"url": {
+							"raw": "{{base_url}}/api/resumes/{{resume_id}}/analyze/",
+							"host": ["{{base_url}}"],
+							"path": ["api", "resumes", "{{resume_id}}", "analyze", ""]
+						}
+					}
+				},
+				{
+					"name": "Get Resume Analysis",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{access_token}}"
+							}
+						],
+						"url": {
+							"raw": "{{base_url}}/api/resumes/{{resume_id}}/analysis/",
+							"host": ["{{base_url}}"],
+							"path": ["api", "resumes", "{{resume_id}}", "analysis", ""]
+						}
+					}
+				},
+				{
+					"name": "Update Resume",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{access_token}}"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"title\": \"Updated Resume Title\"\n}"
+						},
+						"url": {
+							"raw": "{{base_url}}/api/resumes/{{resume_id}}/",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"resumes",
+								"{{resume_id}}",
+								""
+							]
+						},
+						"description": "Update a resume"
+					}
+				},
+				{
+					"name": "Delete Resume",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{access_token}}"
+							}
+						],
+						"url": {
+							"raw": "{{base_url}}/api/resumes/{{resume_id}}/",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"resumes",
+								"{{resume_id}}",
+								""
+							]
+						},
+						"description": "Delete a resume"
+					}
+				}
+			]
+		},
+		{
+			"name": "Jobs",
+			"item": [
+				{
+					"name": "List Jobs",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{access_token}}"
+							}
+						],
+						"url": {
+							"raw": "{{base_url}}/api/jobs/",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"jobs",
+								""
+							]
+						},
+						"description": "Get all jobs"
+					}
+				},
+				{
+					"name": "Search Jobs",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{access_token}}"
+							}
+						],
+						"url": {
+							"raw": "{{base_url}}/api/jobs/?search=python",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"jobs",
+								""
+							],
+							"query": [
+								{
+									"key": "search",
+									"value": "python"
+								}
+							]
+						},
+						"description": "Search for jobs"
+					}
+				},
+				{
+					"name": "Get Job",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{access_token}}"
+							}
+						],
+						"url": {
+							"raw": "{{base_url}}/api/jobs/{{job_id}}/",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"jobs",
+								"{{job_id}}",
+								""
+							]
+						},
+						"description": "Get a specific job by ID"
+					}
+				},
+				{
+					"name": "Apply for Job",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{access_token}}"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"resume_id\": {{resume_id}},\n    \"cover_letter\": \"I am interested in this position...\"\n}"
+						},
+						"url": {
+							"raw": "{{base_url}}/api/jobs/{{job_id}}/apply/",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"jobs",
+								"{{job_id}}",
+								"apply",
+								""
+							]
+						},
+						"description": "Apply for a job with a resume"
+					}
+				},
+				{
+					"name": "Get Job Matches",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{access_token}}"
+							}
+						],
+						"url": {
+							"raw": "{{base_url}}/api/jobs/{{job_id}}/matches/",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"jobs",
+								"{{job_id}}",
+								"matches",
+								""
+							]
+						},
+						"description": "Get job matches for a specific job"
+					}
+				}
+			]
+		},
+		{
+			"name": "Interviews",
+			"item": [
+				{
+					"name": "List Interviews",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{access_token}}"
+							}
+						],
+						"url": {
+							"raw": "{{base_url}}/api/interviews/",
+							"host": ["{{base_url}}"],
+							"path": ["api", "interviews", ""]
+						}
+					}
+				},
+				{
+					"name": "Create Interview",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{access_token}}"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"resume\": 1,\n    \"title\": \"Python Developer Interview Practice\",\n    \"interview_type\": \"technical\",\n    \"job_description\": \"Looking for a Python developer with experience in Django, REST APIs, and database design. The candidate should have strong problem-solving skills and experience with web development.\"\n}"
+						},
+						"url": {
+							"raw": "{{base_url}}/api/interviews/",
+							"host": ["{{base_url}}"],
+							"path": ["api", "interviews", ""]
+						}
+					}
+				},
+				{
+					"name": "Get Interview",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{access_token}}"
+							}
+						],
+						"url": {
+							"raw": "{{base_url}}/api/interviews/{{interview_id}}/",
+							"host": ["{{base_url}}"],
+							"path": ["api", "interviews", "{{interview_id}}", ""]
+						}
+					}
+				},
+				{
+					"name": "Generate Questions",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{access_token}}"
+							}
+						],
+						"url": {
+							"raw": "{{base_url}}/api/interviews/{{interview_id}}/generate_questions/",
+							"host": ["{{base_url}}"],
+							"path": ["api", "interviews", "{{interview_id}}", "generate_questions", ""]
+						}
+					}
+				},
+				{
+					"name": "Get Questions",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{access_token}}"
+							}
+						],
+						"url": {
+							"raw": "{{base_url}}/api/interviews/{{interview_id}}/questions/",
+							"host": ["{{base_url}}"],
+							"path": ["api", "interviews", "{{interview_id}}", "questions", ""]
+						}
+					}
+				},
+				{
+					"name": "Submit Answer",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{access_token}}"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"question_id\": 1,\n    \"answer\": \"Django's ORM (Object-Relational Mapping) is a powerful abstraction layer that allows developers to interact with databases using Python code instead of writing raw SQL. For example, in a recent project, I needed to fetch all users who had completed specific courses with high scores. I wrote a query like: User.objects.filter(enrollments__course__in=specific_courses).annotate(avg_score=Avg('enrollments__score')).filter(avg_score__gte=90)\"\n}"
+						},
+						"url": {
+							"raw": "{{base_url}}/api/interviews/{{interview_id}}/submit_answer/",
+							"host": ["{{base_url}}"],
+							"path": ["api", "interviews", "{{interview_id}}", "submit_answer", ""]
+						}
+					}
+				},
+				{
+					"name": "Get Answers",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{access_token}}"
+							}
+						],
+						"url": {
+							"raw": "{{base_url}}/api/interviews/{{interview_id}}/answers/",
+							"host": ["{{base_url}}"],
+							"path": ["api", "interviews", "{{interview_id}}", "answers", ""]
+						}
+					}
+				},
+				{
+					"name": "Get Feedback",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{access_token}}"
+							}
+						],
+						"url": {
+							"raw": "{{base_url}}/api/interviews/{{interview_id}}/feedback/",
+							"host": ["{{base_url}}"],
+							"path": ["api", "interviews", "{{interview_id}}", "feedback", ""]
+						}
+					}
+				}
+			]
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [""]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [""]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "base_url",
+			"value": "http://localhost:8000",
+			"type": "string"
+		},
+		{
+			"key": "access_token",
+			"value": "your_access_token",
+			"type": "string"
+		},
+		{
+			"key": "refresh_token",
+			"value": "your_refresh_token",
+			"type": "string"
+		},
+		{
+			"key": "resume_id",
+			"value": "1",
+			"type": "string"
+		},
+		{
+			"key": "job_id",
+			"value": "1",
+			"type": "string"
+		},
+		{
+			"key": "interview_id",
+			"value": "1",
+			"type": "string"
+		}
+	]
+} 
